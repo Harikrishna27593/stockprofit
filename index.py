@@ -22,9 +22,9 @@ def listener():
 	Buy_commission = int(request.form['Buy_commission']);
 	Captial_gain_tax_rate = int(request.form['Captial_gain_tax_rate']);
 
-	print tickerSymbol
+	
 
-	print "\n your report is generated"
+	
 
 	proceeds = Allotment*Final_share_price
 
