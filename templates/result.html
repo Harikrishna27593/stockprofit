@@ -1,0 +1,51 @@
+
+
+<div class="card">
+	 <div class="card-body">
+		 Ticker Symbol: <br>
+		 {{data.tickerSymbol}}<br>
+		 <br>
+		 Allotment: <br>
+		 {{data.Allotment}}<br>
+		 <br>
+		 Final Share Price: <br>
+		 {{data.Final_share_price}}<br>
+		 <br>
+		 Sell Commission: <br>
+		 {{data.Sell_commission}}<br>
+		 <br>
+		 Initial Share Price: <br>
+		 {{data.Initial_share_price}}<br>
+		 <br>
+		 Buy Commission: <br>
+		 {{data.Buy_commission}}<br>
+		 <br>
+		 Capital Gain Tax Rate (%): <br>
+		 {{data.Captial_gain_tax_rate}}<br>
+     <br>
+		 PROFIT REPORT: <br>
+		 Proceeds<br>
+		 $ {{data.proceeds}}<br>
+		 <br>
+		 Cost: <br>
+		 $ {{data.cost}}<br>
+		 <br>
+		 Cost details: <br>
+		 Total Purchase Price:<br>
+		 {{data.Allotment}} X ${{data.Initial_share_price}} = ${{data.Totalprice}}<br>
+		 Buy Commission = {{data.Buy_commission}}<br>
+     Sell Commission = {{data.Sell_commission}} <br>
+     Tax on Capital Gain = {{data.Captial_gain_tax_rate}} % of {{data.total}} = {{data.Taxoncapitalgain}}
+     <br>
+		 Net Profit<br>
+${{data.netprofit}}
+<br>
+<br>
+Return on Investment<br>
+{{data.Return_on_Investment}}%
+<br><br>
+To break even, you should have a final share price of
+${{data.breakeven}}
+
+	</div>
+</div>

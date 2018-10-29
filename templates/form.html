@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css">
+	</head>
+	<body
+
+		<div class="container">
+			<br><br><br>
+
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card">
+					  <div class="card-body">
+					    <h4 class="card-title">Enter the Details to Calculate Stock Profit</h4>
+					   		<form method="POST">
+							  	<div class="row">
+							  		<div class="form-group col-sm-4">
+								    	TickerSymbol<input type="text" class="form-control" id="tickerSymbol" name="tickerSymbol" required>
+								  	</div>
+										<div class="form-group col-sm-4">
+								    	Allotment<input type="text" class="form-control" id="Allotment" name="Allotment" required>
+								  	</div>
+										<div class="form-group col-sm-4">
+								    	Final share price<input type="text" class="form-control" id="Final_share_price" name="Final_share_price" required>
+								  	</div>
+										<div class="form-group col-sm-4">
+								    	Sell commission<input type="text" class="form-control" id="Sell_commission" name="Sell_commission" required>
+								  	</div>
+										<div class="form-group col-sm-4">
+								    	Inital share price<input type="text" class="form-control" id="Initial_share_price" name="Initial_share_price" required>
+								  	</div>
+										<div class="form-group col-sm-4">
+								    	Buy commission<input type="text" class="form-control" id="Buy_commission" name="Buy_commission" required>
+								  	</div>
+										<div class="form-group col-sm-4">
+								    	Captial gain tax rate<input type="text" class="form-control" id="Captial_gain_tax_rate" name="Captial_gain_tax_rate" required>
+								  	</div>
+
+									<div class="col-sm-4">
+										<button type="submit" id="searchStock" class="btn btn-primary">Calculate</button>
+									</div>
+							  	</div>
+							</form>
+					  </div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	 <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/js/mdb.min.js"></script>
+    <script>
+    	jQuery(function(){
+    		$('#tickerSymbol').popover({ title:'Stock Symbol cannot be empty !' , placement:'top' , 'content' : 'Please enter stock symbol.' , 'trigger' : 'manual' });
+    		jQuery('#clearStock').on('click',function(e){ e.preventDefault(); jQuery('#tickerSymbol').val('') });
+    		jQuery('#searchStock').on('click',function(e){
+    			e.preventDefault();
+    			var temp = jQuery(this);
+
+    			$('#tickerSymbol').popover('hide');
+
+    			if( jQuery.trim(jQuery('#tickerSymbol').val()) == '' ) {
+
+    				$('#tickerSymbol').popover('show');
+    				return;
+    			}
+
+    			//temp.html('Searching...');
+    			$.post('/ajax',{ tickerSymbol : jQuery('#tickerSymbol').val(),Allotment : jQuery('#Allotment').val(),Final_share_price : jQuery('#Final_share_price').val(),Sell_commission : jQuery('#Sell_commission').val(),Initial_share_price : jQuery('#Initial_share_price').val(),Buy_commission : jQuery('#Buy_commission').val(),Captial_gain_tax_rate : jQuery('#Captial_gain_tax_rate').val()  },function(data){
+
+
+						jQuery('.testSample').html(data);
+
+    				jQuery('.stock-title').html(jQuery('#stock-title').html());
+    				$('#tickerSymbol').trigger('focusout');
+    				jQuery('#stock-title').remove();
+    				temp.html('Search');
+
+    			})
+
+    		})
+
+    	});
+    </script>
+
+
+<div class="stock-header">
+	<h5 class="stock-title"></h5>
+
+</div>
+<div class="testSample">
+
+</div>
+
+
+
+  </body>
+</html>
